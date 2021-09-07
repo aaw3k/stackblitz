@@ -1,0 +1,60 @@
+*:where(:not(iframe, canvas, img, svg, video):not(svg *)) {
+  all: unset;
+  display: revert;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  block-size: 100%;
+}
+
+body {
+  --color-gradient: hsl(322 75% 46%), hsl(250 43% 48%), hsl(211 100% 43%);
+  --animation-duration: 18s;
+
+  background: linear-gradient(300deg, var(--color-gradient));
+  background-size: 400% 400%;
+  display: grid;
+  place-content: center;
+  min-block-size: 100%;
+  animation: gradient-animation var(--animation-duration) ease infinite;
+}
+
+.icon {
+  background: var(--color-background, none);
+  display: grid;
+  place-content: center;
+  padding: 1ch;
+  border-radius: 1ch;
+}
+
+.icon:hover,
+.icon:focus {
+  --color-background: hsl(0 0% 100% / 10%);
+}
+
+.icon svg {
+  fill: none;
+  block-size: 3.5rem;
+  inline-size: 3.5rem;
+  stroke: hsl(0 0% 100% / 90%);
+  stroke-width: 0.05em;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0%;
+  }
+  50% {
+    background-position: 100%;
+  }
+  100% {
+    background-position: 0%;
+  }
+}

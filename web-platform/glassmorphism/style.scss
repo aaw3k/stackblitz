@@ -1,0 +1,108 @@
+*:where(:not(iframe, canvas, img, svg, video):not(svg *)) {
+  all: unset;
+  display: revert;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --background: hsl(150 50% 85%) 50%, hsl(0 0% 100%) 50%;
+  --foreground: hsl(221 39% 11%);
+  --gray: hsl(217 19% 27%);
+  --green: hsl(153 67% 28%);
+
+  @media (prefers-color-scheme: dark) {
+    --background: hsl(154 48% 13%) 50%, hsl(210 5% 8%) 50%;
+    --foreground: hsl(0 0% 100%);
+    --gray: hsl(230 12% 90%);
+    --green: hsl(151 50% 53%);
+  }
+}
+
+html {
+  font-size: 16px;
+  block-size: 100%;
+  color-scheme: dark light;
+}
+
+body {
+  background: linear-gradient(140deg, var(--background));
+  font-family: 'Inter', sans-serif;
+  display: grid;
+  place-content: center;
+  min-block-size: 100%;
+  padding: 5vmin;
+}
+
+.background {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+
+  & img {
+    object-fit: cover;
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
+.card {
+  --glass-lightness: 100%;
+  --glass-transparent: 80%;
+
+  background: hsl(0 0% var(--glass-lightness) / var(--glass-transparent));
+  color: var(--foreground);
+  backdrop-filter: blur(5px) saturate(180%);
+  display: flex;
+  align-items: center;
+  gap: 1.6ch;
+  padding: 1.6ch clamp(0.8ch, 4vw, 2ch);
+  border-radius: 1ch;
+  border: 1px solid hsl(0 0% 100% / calc(var(--glass-transparent) / 2.5));
+
+  @media (prefers-color-scheme: dark) {
+    --glass-lightness: 0%;
+    --glass-transparent: 45%;
+  }
+
+  @supports not (backdrop-filter: blur(1px)) {
+    background: hsl(0 0% var(--glass-lightness) / 60%);
+  }
+}
+
+.icon {
+  --glass-background: hsl(0 0% 100% / 80%);
+
+  background: var(--glass-background);
+  padding: 0.8ch;
+  border-radius: 0.5ch;
+
+  & svg {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    --glass-background: hsl(210 5% 8% / 45%);
+  }
+}
+
+.body {
+  & h2 {
+    font-size: clamp(1.25rem, calc(1rem + 3.5vw), 2rem);
+    font-weight: 700;
+    margin-block-end: 0.3ch;
+  }
+
+  & p {
+    color: var(--gray);
+    font-size: 0.875rem;
+  }
+}
+
+.greenText {
+  color: var(--green);
+  font-weight: 600;
+}

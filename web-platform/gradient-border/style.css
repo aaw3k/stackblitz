@@ -1,0 +1,131 @@
+*:where(:not(iframe, canvas, img, svg, video):not(svg *)) {
+  all: unset;
+  display: revert;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --background: hsl(0 0% 100%);
+  --foreground: hsl(221 39% 11%);
+  --light-gray: hsl(212 8% 45%);
+  --lighter-gray: hsl(220 13% 91%);
+
+  --color1: hsl(48 98% 68%);
+  --color2: hsl(30 92% 67%);
+  --color3: hsl(3 88% 67%);
+  --color4: hsl(271 43% 62%);
+  --color5: hsl(221 75% 69%);
+  --color6: hsl(173 41% 57%);
+  --color7: hsl(141 60% 65%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: hsl(210 5% 8%);
+    --foreground: hsl(0 0% 100%);
+    --lighter-gray: hsl(230 6% 20%);
+    --lightest-gray: hsl(228 6% 15%);
+  }
+}
+
+html {
+  font-size: 16px;
+  block-size: 100%;
+  color-scheme: dark light;
+}
+
+body {
+  background: var(--background)
+    radial-gradient(var(--lighter-gray) 1px, transparent 0);
+  background-size: 1.25rem 1.25rem;
+  background-position: 50%;
+  font-family: 'Inter', sans-serif;
+  display: grid;
+  place-content: center;
+  min-block-size: 100%;
+  padding: 10vmin;
+}
+
+.block {
+  --padding: 2px;
+
+  background-clip: content-box, border-box;
+  background-image: linear-gradient(var(--background), var(--background)),
+    var(--border-gradient, var(--lighter-gray));
+  padding: var(--padding);
+  border-radius: 1ch;
+}
+
+.block p {
+  color: var(--foreground);
+  font-weight: 500;
+  text-align: center;
+  padding: 1.2ch 2.2ch;
+}
+
+.patterns {
+  display: flex;
+  margin-block-start: 1.6ch;
+  justify-content: center;
+  gap: 1.6ch;
+}
+
+.patterns .item {
+  --opacity: 0.5;
+
+  background: var(--border-gradient, var(--lighter-gray));
+  opacity: var(--opacity);
+  block-size: 1.5rem;
+  inline-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 0.6ch;
+  box-shadow: var(--box-shadow, none);
+}
+
+.patterns .item.active {
+  --opacity: 1;
+  --box-shadow: 0 0 0 2px var(--background), 0 0 0 3px var(--light-gray);
+}
+
+[data-gradient='rainbow'] {
+  --border-gradient: linear-gradient(
+    to right,
+    var(--color1) 0%,
+    var(--color2) calc(100% / 6),
+    var(--color3) calc(100% / 6 * 2),
+    var(--color4) calc(100% / 6 * 3),
+    var(--color5) calc(100% / 6 * 4),
+    var(--color6) calc(100% / 6 * 5),
+    var(--color7) 100%
+  );
+}
+
+[data-gradient='blue-green'] {
+  --border-gradient: linear-gradient(
+    to right,
+    var(--color5) 0%,
+    var(--color6) calc(100% / 6 * 3),
+    var(--color7) 100%
+  );
+}
+
+[data-gradient='red-yellow'] {
+  --border-gradient: linear-gradient(
+    to right,
+    var(--color3) 0%,
+    var(--color2) calc(100% / 6 * 3),
+    var(--color1) 100%
+  );
+}
+
+[data-gradient='green-purple'] {
+  --border-gradient: linear-gradient(
+    to right,
+    var(--color7) 0%,
+    var(--color5) calc(100% / 6 * 3),
+    var(--color4) 100%
+  );
+}
