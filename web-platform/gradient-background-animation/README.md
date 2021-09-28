@@ -1,6 +1,6 @@
-# Animated Gradient Background
+# Gradient Background Animation
 
-Create an animated gradient background with CSS.
+Create a gradient background animation with CSS.
 
 ## Preview
 
