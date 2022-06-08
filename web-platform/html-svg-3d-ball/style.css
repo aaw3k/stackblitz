@@ -1,0 +1,68 @@
+:root {
+  --background: hsl(0 0% 100%);
+  --foreground: hsl(240 3% 6%);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+*:where(:not(iframe, canvas, img, svg, video):not(svg *)) {
+  all: unset;
+  display: revert;
+}
+
+html {
+  block-size: 100%;
+  color-scheme: light;
+}
+
+body {
+  min-block-size: 100vh;
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.5;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.app {
+  inline-size: min(45rem, 100% - 2rem);
+  padding-block: 2ch;
+}
+
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 33ch), 1fr));
+  gap: 2ch;
+  place-items: center;
+}
+
+.card {
+  position: relative;
+  inline-size: 20rem;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  grid-template-rows: minmax(50%, 1fr) fit-content(5ch);
+  overflow: hidden;
+}
+
+.card > svg {
+  inline-size: 100%;
+  z-index: 1;
+}
+
+.card > h3 {
+  inline-size: 100%;
+  font-size: 2ch;
+  font-weight: 600;
+  padding: 0.7ch;
+  background: hsl(0 0% 100%);
+  border-block-start: 1px solid hsl(0 0% 77%);
+  z-index: 1;
+}
